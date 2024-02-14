@@ -12,9 +12,9 @@ type Props = {
 
 const Header = ({ label }: Props) => {
   return (
-    <div className="w-full flex-col flex gap-y-4 items-center justify-center">
+    <div className="w-full flex-col flex gap-y-4 items-center justify-center mt-4">
       <h1 className={cn("text-3xl font-semibold", poppinsFont.className)}>
-        🔐 Auth
+        🏪 SIGN IN
       </h1>
       <p className="text-muted-foreground text-sm">{label}</p>
     </div>
