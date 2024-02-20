@@ -3,6 +3,8 @@ import { getUserByEmail } from "@/data/user";
 import { db } from "@/lib/db";
 import { RegisterSchema } from "@/schemas";
 import bcrypt from "bcryptjs";
+import { generateVerificationToken } from "@/lib/token";
+import { sendVerficationMail } from "@/lib/mail";
 
 export const register = async (values: any) => {
   // try {
@@ -31,10 +33,15 @@ export const register = async (values: any) => {
     },
   });
 
-  //
+  //generting verfication token
+
+  const verficationToken = await generateVerificationToken(email);
+  await sendVerficationMail(verficationToken.email, verficationToken.token);
+
+  //send verification token to client
 
   return {
-    success: "Created Successfully",
+    success: "Verification Mail Sent",
     newUser,
   };
   // } catch (error) {

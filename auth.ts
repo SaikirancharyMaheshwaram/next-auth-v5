@@ -4,6 +4,7 @@ import authConfig from "./auth.config";
 import { db } from "./lib/db";
 import { getUserById } from "./data/user";
 import { UserRole } from "@prisma/client";
+import credentials from "next-auth/providers/credentials";
 
 declare module "next-auth" {
   interface User {
@@ -34,13 +35,18 @@ export const {
   },
   callbacks: {
     //email verification
-    // async signIn({ user }) {
-    //   const existingUser = await getUserById(user.id!);
-    //   if (!existingUser || !existingUser.emailVerified) {
-    //     return false;
-    //   }
-    //   return true;
-    // },
+    async signIn({ user, account }) {
+      //allowing oauth users to signin without emailverified
+      if (account?.provider !== "credentials") return true;
+
+      const existingUser = await getUserById(user.id!);
+      if (!existingUser || !existingUser.emailVerified) {
+        return false;
+      }
+      //todo 2fa check
+
+      return true;
+    },
     async session({ token, session }) {
       console.log(token);
       if (token.sub && session.user) {
