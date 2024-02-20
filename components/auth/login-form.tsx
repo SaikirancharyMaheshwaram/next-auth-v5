@@ -19,6 +19,7 @@ import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
 import { login } from "@/actions/login";
 import { useTransition } from "react";
+import { useSearchParams } from "next/navigation";
 
 export const LoginForm = () => {
   const [error, setError] = useState<string | undefined>("");
@@ -30,6 +31,12 @@ export const LoginForm = () => {
       password: "",
     },
   });
+  const searchParams = useSearchParams();
+  const urlError =
+    searchParams.get("error") === "OAuthAccountNotLinked"
+      ? "Already Login using different provider"
+      : "";
+
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
     setSuccess("");
     setError("");
@@ -90,7 +97,7 @@ export const LoginForm = () => {
               )}
             />
           </div>
-          <FormError message={error} />
+          <FormError message={error || urlError} />
           <FormSuccess message={success} />
           <Button
             // variant={"outline"}
