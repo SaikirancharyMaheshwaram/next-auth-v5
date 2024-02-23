@@ -3,7 +3,7 @@
  * An array of routes that are accessible to the public and doesnot  require login
  * @type {string[]}
  */
-export const publicRoutes = ["/", "/api", "/trpc"];
+export const publicRoutes = ["/", "/api", "/trpc", "/auth/new-verification"];
 
 /**
  * These routes are protected routes and need authencated to visit them

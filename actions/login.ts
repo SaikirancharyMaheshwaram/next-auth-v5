@@ -31,7 +31,7 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
     );
     await sendVerficationMail(verficationToken.email, verficationToken.token);
     return {
-      success: "verification mail sent to mail",
+      success: "confirm mail sent to mail",
     };
   }
   try {
