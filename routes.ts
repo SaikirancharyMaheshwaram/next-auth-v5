@@ -9,7 +9,13 @@ export const publicRoutes = ["/", "/api", "/trpc", "/auth/new-verification"];
  * These routes are protected routes and need authencated to visit them
  * and these routes will redirect loggedin users to home page
  */
-export const authRoutes = ["/auth/login", "/auth/register", "/auth/error"];
+export const authRoutes = [
+  "/auth/login",
+  "/auth/register",
+  "/auth/error",
+  "/auth/reset",
+  "/auth/reset-password",
+];
 
 /**
  * api routes are public routes

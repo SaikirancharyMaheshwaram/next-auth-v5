@@ -5,8 +5,9 @@ import { RegisterSchema } from "@/schemas";
 import bcrypt from "bcryptjs";
 import { generateVerificationToken } from "@/lib/token";
 import { sendVerficationMail } from "@/lib/mail";
+import { z } from "zod";
 
-export const register = async (values: any) => {
+export const register = async (values: z.infer<typeof RegisterSchema>) => {
   // try {
   // console.log(values);
   const validate = RegisterSchema.safeParse(values);

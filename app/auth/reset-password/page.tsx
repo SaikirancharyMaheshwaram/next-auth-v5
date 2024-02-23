@@ -1,0 +1,9 @@
+import React from "react";
+import { ResetForm } from "@/components/auth/reset-form";
+import { NewPasswordForm } from "@/components/auth/new-password-form";
+
+const NewPassword = () => {
+  return <NewPasswordForm />;
+};
+
+export default NewPassword;

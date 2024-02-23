@@ -20,6 +20,7 @@ import { FormSuccess } from "../form-success";
 import { login } from "@/actions/login";
 import { useTransition } from "react";
 import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 
 export const LoginForm = () => {
   const [error, setError] = useState<string | undefined>("");
@@ -97,6 +98,9 @@ export const LoginForm = () => {
               )}
             />
           </div>
+          <Button variant={"link"} >
+            <Link href={"/auth/reset"}>Forgot Password</Link>
+          </Button>
           <FormError message={error || urlError} />
           <FormSuccess message={success} />
           <Button
