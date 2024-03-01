@@ -4,7 +4,6 @@ import authConfig from "./auth.config";
 import { db } from "./lib/db";
 import { getUserById } from "./data/user";
 import { UserRole } from "@prisma/client";
-import credentials from "next-auth/providers/credentials";
 import { getTwoFactorConfirmationByUserId } from "./data/twofactor-confirmation";
 
 declare module "next-auth" {
@@ -47,7 +46,7 @@ export const {
       //todo 2fa check
       if (existingUser.isTwoFactorEnabled) {
         const twoFactorConfirmation = await getTwoFactorConfirmationByUserId(
-          existingUser.id
+          existingUser.id,
         );
 
         if (!twoFactorConfirmation) {
