@@ -1,19 +1,14 @@
+"use client";
 import React from "react";
-import { auth, signOut } from "@/auth";
 import { Button } from "@/components/ui/button";
-const SettingPage = async () => {
-  const handleSignOut = async () => {
-    "use server";
-    await signOut();
-  };
-  const res = await auth();
-
+import { useSession } from "next-auth/react";
+const SettingPage = () => {
+  const res = useSession();
   return (
     <div>
       {JSON.stringify(res)}
-      
 
-      <form action={handleSignOut}>
+      <form>
         <Button variant={"outline"} size={"lg"} type="submit">
           SignOut
         </Button>

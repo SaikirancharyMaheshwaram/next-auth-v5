@@ -5,7 +5,7 @@ import { getUserByEmail } from "@/data/user";
 
 export const newverification = async (token: string) => {
   const existingToken = await getVerificationTokenByToken(token);
-  
+
   if (!existingToken)
     return {
       error: "Token is missing in db",
