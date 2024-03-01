@@ -1,15 +1,16 @@
 "use client";
-import React from "react";
 import { Button } from "@/components/ui/button";
-import { useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
+import { useCurrentUser } from "@/hooks/use-current-user";
 const SettingPage = () => {
-  const res = useSession();
+  const user = useCurrentUser();
+  const onClick = () => {
+    signOut();
+  };
   return (
     <div>
-      {JSON.stringify(res)}
-
       <form>
-        <Button variant={"outline"} size={"lg"} type="submit">
+        <Button onClick={onClick} variant={"outline"} size={"lg"} type="submit">
           SignOut
         </Button>
       </form>
